@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>Converting Roman Numbers</Name>
     <RootNamespace>Converting Roman Numbers</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
