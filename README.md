@@ -1,8 +1,14 @@
 ## Application for converting roman numbers into arabic numbers.  
 
-Right now that is a console application, but i'm planning to make a simple interface.  
+Made with `customtkinter` for modern and simple user interface. 
+The icons folder has two options.
 
-> converting_roman_numbers.py uses match-case statements that were implemented in python 3.10  
+#### How it looks:  
+
+![image](https://github.com/user-attachments/assets/65171401-e1e7-4e61-accc-75930ce9a4d8)
+
+
+> function for converting numbers uses match-case statements that were implemented in python 3.10  
 
 The syntax:
 ```
@@ -16,3 +22,5 @@ match term:
   case _:  
     action-default
 ```
+
+Currently the application is written in one file, which is a little bit big, i'm planning on separating interface part from the converting numbers part of the program.
