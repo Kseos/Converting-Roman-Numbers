@@ -1,7 +1,10 @@
+from distutils.util import change_root
+from io import text_encoding
 import tkinter as tk
 from customtkinter import *
 
 set_appearance_mode('dark')
+mode = 'dark'
 
 def double_letter_numbers(numerical_input):
     answer = 0
@@ -71,28 +74,50 @@ class App():
         self.root.iconbitmap('icons/coin.ico')
         self.frame = CTkFrame(self.root)
         self.frame.pack(pady = 0, padx = 0, expand = True, fill = 'both')
-        
+          
         # roman number
         self.romanlabel = CTkLabel(self.frame, text= 'Roman number', font=('calibri', 18))
-        self.romanlabel.place(relx = 0.1, rely = 0.1)  
+        self.romanlabel.place(relx = 0.1, rely = 0.2)  
         self.romannumber = CTkEntry(self.frame, placeholder_text= "Enter roman number", font=('calibri', 14))
-        self.romannumber.place(relx = 0.5, rely = 0.1)
+        self.romannumber.place(relx = 0.43, rely = 0.2)
         
         # arabic number
         self.arabiclabel = CTkLabel(self.frame, text = 'Arabic number', font=('calibri', 18))
-        self.arabiclabel.place(relx=0.1, rely = 0.3)
+        self.arabiclabel.place(relx=0.1, rely = 0.4)
         self.arabicnumber = CTkLabel(self.frame, text = '', font=('calibri', 16))
-        self.arabicnumber.place(relx=0.5, rely = 0.3)
+        self.arabicnumber.place(relx=0.43, rely = 0.4)
+        
+
+        # switch for appearance mode
+        self.switch = CTkSwitch(self.frame, text = 'Mode', font = ('calibri', 13), command = self.switch_event)
+        self.switch.place(relx = 0.8, rely = 0.05)
         
         # button
-        button = CTkButton(self.frame, text="Submit", command = self.click_handler,
-                           font=("calibri",16), corner_radius = 9, fg_color = '#D9D9D9',
-                           hover_color = '#BDB4BF', text_color = '#000000')
-        button.place(relx = 0.33, rely = 0.7)
+        self.button = CTkButton(self.frame, text = 'Submit', command = self.click_handler,
+                           font=("calibri", 16), corner_radius = 9, fg_color='#3E78B2', 
+                           hover_color= '#4A525A', text_color='#000000')
+        self.button.place(relx = 0.33, rely = 0.7)
         
         self.root.mainloop()
         return
     
+    def change_button_color(self):
+        if mode == 'dark':
+            self.button.configure(fg_color='#004BA8', hover_color= '#24272B', text_color='#E3FFE0')
+        else:
+            self.button.configure(fg_color='#3E78B2', hover_color= '#4A525A', text_color='#000000')
+            
+    def switch_event(self):
+        global mode
+        if mode == 'dark':
+            set_appearance_mode('light')
+            self.change_button_color()
+            mode = 'light'
+        else:
+            set_appearance_mode('dark')
+            self.change_button_color()
+            mode = 'dark'
+        
     def click_handler(self):
         newtext = roman_to_int(self.romannumber.get().upper())
         if newtext == 0:
